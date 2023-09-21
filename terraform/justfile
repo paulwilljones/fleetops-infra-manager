@@ -1,0 +1,16 @@
+set export
+PROJECT_ID := "jetstack-paul"
+GSA := "gsa-infra-mgr"
+IP := `curl ifconfig.me`
+
+plan:
+    terraform init
+    terraform plan -var master_authorized_range={{IP}}/32 -var region=us-central1 -var zone=us-central1-a
+
+apply:
+    terraform apply -var master_authorized_range={{IP}}/32 -var region=us-central1 -var zone=us-central1-a
+
+lint:
+    terraform fmt
+    terraform validate
+    tfsec -s .

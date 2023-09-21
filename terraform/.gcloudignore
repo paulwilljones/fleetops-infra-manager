@@ -1,0 +1,4 @@
+.gcloudignore
+/.terraform/
+/.terraform/*
+terraform.*
